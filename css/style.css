@@ -64,6 +64,12 @@ p {
   box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.75);
   background: #fff;
 }
+.post_title h2 {
+  text-shadow: 1px 1px #bbb;
+}
+.post_title span {
+  text-shadow: none;
+}
 section .box_in_border {
   margin-left: 0;
 }
@@ -156,6 +162,9 @@ h3,
 p {
   margin-top: 0.5em;
 }
+.content a {
+  text-decoration: underline;
+}
 .img_container {
   position: relative;
   height: 10em;
@@ -202,6 +211,13 @@ p {
 }
 .links {
   margin-top: 0.5em;
+}
+.links ul {
+  margin-left: 0.5em;
+  padding-left: 0.5em;
+}
+.links li {
+  list-style-type: circle;
 }
 .links h4 {
   font-size: 1.2em;
