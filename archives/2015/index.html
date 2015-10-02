@@ -1,162 +1,76 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  
-  <title>Archives: 2015 | Strange Games &amp; Things</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Strange Games & Things">
-<meta property="og:url" content="http://chrismcmath.com/archives/2015/index.html">
-<meta property="og:site_name" content="Strange Games & Things">
-<meta property="og:description">
-<meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Strange Games & Things">
-<meta name="twitter:description">
-  
-    <link rel="alternative" href="/atom.xml" title="Strange Games &amp; Things" type="application/atom+xml">
-  
-  
-    <link rel="icon" href="/favicon.png">
-  
-  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
-  <link rel="stylesheet" href="/css/style.css" type="text/css">
-  
+<!DOCTYPE html><html lang="en"><head><script id="vertexShader" type="x-shader/x-vertex">varying vec2 vUv;
 
-</head>
-<body>
-  <div id="container">
-    <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Strange Games &amp; Things</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
-        
-        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="q" value="site:http://chrismcmath.com"></form>
-      </div>
-    </div>
-  </div>
-</header>
-      <div class="outer">
-        <section id="main">
-  
-  
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2015" class="archive-year">2015</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      <a href="/2015/04/25/hello-world/" class="archive-article-date">
-  <time datetime="2015-04-25T06:31:50.000Z" itemprop="datePublished">Apr 25</time>
-</a>
-      
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2015/04/25/hello-world/">Welcome to the galaxy!</a>
-    </h1>
-  
+void main()
+    {
+        vUv = uv;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+    }</script><script id="fragmentShader" type="x-shader/x-fragment">const float MAX_BRIGHTNESS = 0.5;
 
-    </header>
-  </div>
-</article>
-  
-  
-    </div></section>
-  
-</section>
-        
-          <aside id="sidebar">
-  
-    
-  
-    
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/04/">April 2015</a><span class="archive-list-count">1</span></li></ul>
-    </div>
-  </div>
+uniform vec2 resolution;
+uniform float time;
 
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recents</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2015/04/25/hello-world/">Welcome to the galaxy!</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
+varying vec2 vUv;
 
-  
-</aside>
-        
-      </div>
-      <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      &copy; 2015 Chris McMath<br>
-      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
-    </div>
-  </div>
-</footer>
-    </div>
-    <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
+void main(void)
+{
 
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+    vec2 p = -1.0 + 2.0 * vUv;
+    float a = time;
+    float d,e,f,g=1.0/40.0,h,i,r,q;
 
+    e=400.0*(p.x*0.5+0.5);
+    f=400.0*(p.y*0.5+0.5);
+    i=200.0+sin(e*g+a/150.0)*20.0;
+    d=200.0+cos(f*g/2.0)*18.0+cos(e*g)*7.0;
+    r=sqrt(pow(i-e,2.0)+pow(d-f,2.0));
+    q=f/r;
+    e=(r*cos(q))-a/2.0;f=(r*sin(q))-a/2.0;
+    d=sin(e*g)*176.0+sin(e*g)*164.0+r;
+    h=((f+d)+a/2.0)*g;
+    i=cos(h+r*p.x/1.3)*(e+e+a)+cos(q*g*6.0)*(r+h/3.0);
+    h=sin(f*g)*144.0-sin(e*g)*212.0*p.x;
+    h=(h+(f-e)*q+sin(r-(a+h)/7.0)*10.0+i/4.0)*g;
+    i+=cos(h*2.3*sin(a/350.0-q))*184.0*sin(q-(r*4.3+a/12.0)*g)+tan(r*g+h)*184.0*cos(r*g+h);
+    i=mod(i/5.6,256.0)/64.0;
+    if(i<0.0) i+=4.0;
+        if(i>=2.0) i=4.0-i;
+            d=r/350.0;
+    d+=sin(d*d*8.0)*0.52;
+    f=(sin(a*g)+1.0)/2.0;
+    //float anotherFinal = (f*i/1.6*d*p) + (i/1.3+d/8.0)*d*(1.0-p.x);
+    float anotherFinal = i*0.5;
+    //gl_FragColor=vec4(anotherFinal,anotherFinal,anotherFinal,0.5);
+    //gl_FragColor=vec4(vec3(f*i/1.6,i/2.0+d/13.0,i)*d*p.x+vec3(i/1.3+d/8.0,i/2.0+d/18.0,i)*d*(1.0-p.x),1.0);
 
-  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+    float final = vUv.x + vUv.y;
+    //final = saturate(final, 0, MAX_BRIGHTNESS);
 
+    float x = abs(sin(vUv.x * vUv.y + time / 5.0));
+    float y = abs(sin(vUv.x * vUv.y + time / 10.0));
+    float z = abs(sin(vUv.x * vUv.y + time / 15.0));
 
-<script src="/js/script.js" type="text/javascript"></script>
+    final = x * y * z;
 
-  </div>
-</body>
-</html>
+    final *= 0.5;
+    gl_FragColor=vec4(vec3(final, final, final),final);
+}</script><meta charset="utf-8"><link rel="stylesheet" href="/css/style.css"><link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script><script src="http://code.jquery.com/jquery-latest.min.js"></script><script src="/js/background_loader.js"></script><script src="/js/animated_background.js"></script><link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen"><script src="/fancybox/jquery.fancybox.pack.js"></script><script type="text/javascript">$(document).ready(function() {
+    $(".fancybox")
+    .attr('rel', 'gallery')
+    .fancybox({
+        padding : 0,
+        helpers : {
+            title: {
+                type: 'outside'
+            },
+            overlay : {
+                css : {
+                    'background' : 'rgba(0,0,0,0.8)'
+                }
+            }
+        }
+    });
+});</script></head><!--body--><body onload="Init();"><div id="background"><img id="lorempixel"></div><div id="animated_header"><header><div class="spacer"></div><div class="box_in_border"><h2>the online portfolio of <span>Chris McMath</span></h2></div></header></div><div class="outer"><aside class="box_in"><nav id="shortcut_bar"><ul><li><div class="box_in_border"><a href="/categories/Games/"><h2>Games</h2></a></div></li></ul></nav></aside><section class="box_in"><article><div class="box_in_border"><h2><a href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/">Avenging My Gran, the Famed Botanist<span>Games</span></a></h2><div class="meta"><div class="game_meta"><p>Status<span>Completed</span>Role<span>Developer Designer</span>Date<span>2015-05-02</span></p></div><div class="gallery"><div class="img_container"><a rel="group" href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/0.png" title="Cool paint effect not included" class="fancybox"><img src="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/0.png" alt="Cool paint effect not included"/></a></div><div class="img_container"><a rel="group" href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/1.png" title="Don't look into it too much" class="fancybox"><img src="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/1.png" alt="Don't look into it too much"/></a></div><div class="img_container"><a rel="group" href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/2.png" title="Tempting the player. It looks important, and it is!" class="fancybox"><img src="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/2.png" alt="Tempting the player. It looks important, and it is!"/></a></div><div class="img_container"><a rel="group" href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/3.png" title="'Shrubs' is also a funny word (to me)" class="fancybox"><img src="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/3.png" alt="'Shrubs' is also a funny word (to me)"/></a></div><div class="img_container"><a rel="group" href="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/4.png" title="Spoiler: the last level is HARD" class="fancybox"><img src="/2015/05/02/Avenging-My-Gran-the-Famed-Botanist/4.png" alt="Spoiler: the last level is HARD"/></a></div></div><div class="tagline"><h4>Short puzzlescript puzzler</h4></div></div><div class="content"><p>Made in 48 hours for LD32 (theme ‘Unconventional Weapon’), this was a great opportunity to get my hands dirty with Stephen Lavelle’s Puzzlescript engine. The syntax is great fun to figure out, and itself resembles someone like a puzzle game. The limitations of the engine are liberating, but also allow the designer no slight-of-hand tricks to draw attention away from poor gameplay. A good puzzlescript game is a good game, period.</p>
+<p>I had tried to avoid any story at all, having experimented greatly in the previous two Ludum Dares. However I found it impossible to avoid entirely, opting for a short introduction that provides some sense of motivation for your avatar. And why ‘Gran’? ‘Gran’ is funny, right?</p>
+<p>This also marked my first game in a while to feature an actual colour palette. At the time I remember being very unsatisfied with it, but looking back it has a dreary yet colourful demeanour that suits the theme quite nicely.</p>
+</div><div class="footer"><div class="links"><h4><a href="http://www.puzzlescript.net/play.html?p=1f1c1c757eaf4665f984">Play Game</a></h4><h4><a href="http://chrismcmath.itch.io/avenging-my-gran-the-famed-botanist">Itch.io link</a></h4><h4><a href="http://gamejolt.com/games/avenging-my-gran-the-famed-botanist">Gamejolt link</a></h4><h4><a href="http://ludumdare.com/compo/ludum-dare-32/?action=preview&amp;uid=35889">Ludum Dare link</a></h4></div></div><ul class="tags"><li><span><a href="/tags/avening-my-gran/"><p>#avening-my-gran</p></a></span></li><li><span><a href="/tags/project/"><p>#project</p></a></span></li></ul><div class="content"></div></div></article></section></div></body><!--footer include _partial/footer--></html>
