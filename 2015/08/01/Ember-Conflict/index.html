@@ -1,0 +1,73 @@
+<!DOCTYPE html><html lang="en"><head><script id="vertexShader" type="x-shader/x-vertex">varying vec2 vUv;
+
+void main()
+    {
+        vUv = uv;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+    }</script><script id="fragmentShader" type="x-shader/x-fragment">const float MAX_BRIGHTNESS = 0.5;
+
+uniform vec2 resolution;
+uniform float time;
+
+varying vec2 vUv;
+
+void main(void)
+{
+
+    vec2 p = -1.0 + 2.0 * vUv;
+    float a = time;
+    float d,e,f,g=1.0/40.0,h,i,r,q;
+
+    e=400.0*(p.x*0.5+0.5);
+    f=400.0*(p.y*0.5+0.5);
+    i=200.0+sin(e*g+a/150.0)*20.0;
+    d=200.0+cos(f*g/2.0)*18.0+cos(e*g)*7.0;
+    r=sqrt(pow(i-e,2.0)+pow(d-f,2.0));
+    q=f/r;
+    e=(r*cos(q))-a/2.0;f=(r*sin(q))-a/2.0;
+    d=sin(e*g)*176.0+sin(e*g)*164.0+r;
+    h=((f+d)+a/2.0)*g;
+    i=cos(h+r*p.x/1.3)*(e+e+a)+cos(q*g*6.0)*(r+h/3.0);
+    h=sin(f*g)*144.0-sin(e*g)*212.0*p.x;
+    h=(h+(f-e)*q+sin(r-(a+h)/7.0)*10.0+i/4.0)*g;
+    i+=cos(h*2.3*sin(a/350.0-q))*184.0*sin(q-(r*4.3+a/12.0)*g)+tan(r*g+h)*184.0*cos(r*g+h);
+    i=mod(i/5.6,256.0)/64.0;
+    if(i<0.0) i+=4.0;
+        if(i>=2.0) i=4.0-i;
+            d=r/350.0;
+    d+=sin(d*d*8.0)*0.52;
+    f=(sin(a*g)+1.0)/2.0;
+    //float anotherFinal = (f*i/1.6*d*p) + (i/1.3+d/8.0)*d*(1.0-p.x);
+    float anotherFinal = i*0.5;
+    //gl_FragColor=vec4(anotherFinal,anotherFinal,anotherFinal,0.5);
+    //gl_FragColor=vec4(vec3(f*i/1.6,i/2.0+d/13.0,i)*d*p.x+vec3(i/1.3+d/8.0,i/2.0+d/18.0,i)*d*(1.0-p.x),1.0);
+
+    float final = vUv.x + vUv.y;
+    //final = saturate(final, 0, MAX_BRIGHTNESS);
+
+    float x = abs(sin(vUv.x * vUv.y + time / 5.0));
+    float y = abs(sin(vUv.x * vUv.y + time / 10.0));
+    float z = abs(sin(vUv.x * vUv.y + time / 15.0));
+
+    final = x * y * z;
+
+    final *= 0.5;
+    gl_FragColor=vec4(vec3(final, final, final),final);
+}</script><meta charset="utf-8"><link rel="stylesheet" href="/css/style.css"><link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script><script src="http://code.jquery.com/jquery-latest.min.js"></script><script src="/js/background_loader.js"></script><script src="/js/animated_background.js"></script><link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen"><script src="/fancybox/jquery.fancybox.pack.js"></script><script type="text/javascript">$(document).ready(function() {
+    $(".fancybox")
+    .attr('rel', 'gallery')
+    .fancybox({
+        padding : 0,
+        helpers : {
+            title: {
+                type: 'outside'
+            },
+            overlay : {
+                css : {
+                    'background' : 'rgba(0,0,0,0.8)'
+                }
+            }
+        }
+    });
+});</script></head><!--body--><body onload="Init();"><div id="background"><img id="lorempixel"></div><div id="animated_header"><header><div class="spacer"></div><div class="box_in_border"><h2>the online portfolio of <span>Chris McMath</span></h2></div></header></div><div class="outer"><aside class="box_in"><nav id="shortcut_bar"><ul><li><div class="box_in_border"><a href="/categories/Games/"><h2>Games</h2></a></div></li><li><div class="box_in_border"><a href="/categories/Tools/"><h2>Tools</h2></a></div></li></ul></nav></aside><section class="box_in"><article><div class="box_in_border"><h2><a href="/2015/08/01/Ember-Conflict/">Ember Conflict<span>Games</span></a></h2><div class="meta"><div class="game_meta"><p>Status<span>Completed</span>Role<span>Co-Developer</span>Date<span>2015-08-01</span></p></div><div class="gallery"><div class="img_container"><a rel="group" href="/2015/08/01/Ember-Conflict/0.png" title="" class="fancybox"><img src="/2015/08/01/Ember-Conflict/0.png" alt=""/></a></div><div class="img_container"><a rel="group" href="/2015/08/01/Ember-Conflict/1.png" title="" class="fancybox"><img src="/2015/08/01/Ember-Conflict/1.png" alt=""/></a></div><div class="img_container"><a rel="group" href="/2015/08/01/Ember-Conflict/2.png" title="" class="fancybox"><img src="/2015/08/01/Ember-Conflict/2.png" alt=""/></a></div><div class="img_container"><a rel="group" href="/2015/08/01/Ember-Conflict/3.png" title="" class="fancybox"><img src="/2015/08/01/Ember-Conflict/3.png" alt=""/></a></div></div><div class="tagline"><h4>Touch-based Real Time Tactics</h4></div></div><div class="content"></div><div class="footer"><div class="links"><h4><a href="">Website</a></h4><h4><a href="">Ludum Dare</a></h4></div></div><ul class="tags"><li><span><a href="/tags/ember/"><p>#ember</p></a></span></li><li><span><a href="/tags/project/"><p>#project</p></a></span></li></ul><div class="content"></div></div></article></section></div></body><!--footer include _partial/footer--></html>
