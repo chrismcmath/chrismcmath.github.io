@@ -258,7 +258,6 @@ p {
   margin: 0;
 }
 .social_buttons {
-  height: 2em;
   overflow: hidden;
 }
 .social_button {
@@ -268,6 +267,13 @@ p {
   text-align: right;
   margin: 0.5em;
   width: 1em;
+  height: 1em;
+}
+@media screen and (max-width: 980px) {
+  .social_button {
+    width: 2em;
+    height: 2em;
+  }
 }
 .social_button img {
   overflow: hidden;
