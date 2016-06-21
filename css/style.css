@@ -73,7 +73,7 @@ p {
 section .box_in_border {
   margin-left: 0;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   section .box_in_border {
     margin-left: 0.5em;
   }
@@ -83,7 +83,7 @@ section {
   float: left;
   width: 75%;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   section {
     display: block;
     float: none;
@@ -96,7 +96,7 @@ aside {
   float: left;
   width: 25%;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   aside {
     display: block;
     float: none;
@@ -122,14 +122,14 @@ aside {
   list-style: none;
   margin-top: 0.5em;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   #shortcut_bar li {
     margin: 0;
     float: left;
     width: 33.33%;
   }
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   #shortcut_bar li:nth-child(4) {
     display: block;
     clear: both;
@@ -137,7 +137,7 @@ aside {
     margin-top: -universal_margin;
   }
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   #shortcut_bar li:nth-child(4) .box_in_border {
     margin-top: 0;
   }
@@ -160,7 +160,7 @@ aside {
   overflow: hidden;
   text-overflow: ellipsis;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   #shortcut_bar a h2 {
     text-align: center;
   }
@@ -269,7 +269,7 @@ p {
   width: 1em;
   height: 1em;
 }
-@media screen and (max-width: 980px) {
+@media screen and (orientation: portrait) and (max-width: 980px) {
   .social_button {
     width: 2em;
     height: 2em;

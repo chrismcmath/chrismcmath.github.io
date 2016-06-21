@@ -1,0 +1,81 @@
+<!DOCTYPE html><html lang="en"><head><script id="vertexShader" type="x-shader/x-vertex">varying vec2 vUv;
+
+void main()
+    {
+        vUv = uv;
+        vec4 mvPosition = modelViewMatrix * vec4( position, 1.0 );
+        gl_Position = projectionMatrix * mvPosition;
+    }</script><script id="fragmentShader" type="x-shader/x-fragment">const float MAX_BRIGHTNESS = 0.5;
+
+uniform vec2 resolution;
+uniform float time;
+
+varying vec2 vUv;
+
+void main(void)
+{
+
+    vec2 p = -1.0 + 2.0 * vUv;
+    float a = time;
+    float d,e,f,g=1.0/40.0,h,i,r,q;
+
+    e=400.0*(p.x*0.5+0.5);
+    f=400.0*(p.y*0.5+0.5);
+    i=200.0+sin(e*g+a/150.0)*20.0;
+    d=200.0+cos(f*g/2.0)*18.0+cos(e*g)*7.0;
+    r=sqrt(pow(i-e,2.0)+pow(d-f,2.0));
+    q=f/r;
+    e=(r*cos(q))-a/2.0;f=(r*sin(q))-a/2.0;
+    d=sin(e*g)*176.0+sin(e*g)*164.0+r;
+    h=((f+d)+a/2.0)*g;
+    i=cos(h+r*p.x/1.3)*(e+e+a)+cos(q*g*6.0)*(r+h/3.0);
+    h=sin(f*g)*144.0-sin(e*g)*212.0*p.x;
+    h=(h+(f-e)*q+sin(r-(a+h)/7.0)*10.0+i/4.0)*g;
+    i+=cos(h*2.3*sin(a/350.0-q))*184.0*sin(q-(r*4.3+a/12.0)*g)+tan(r*g+h)*184.0*cos(r*g+h);
+    i=mod(i/5.6,256.0)/64.0;
+    if(i<0.0) i+=4.0;
+        if(i>=2.0) i=4.0-i;
+            d=r/350.0;
+    d+=sin(d*d*8.0)*0.52;
+    f=(sin(a*g)+1.0)/2.0;
+    //float anotherFinal = (f*i/1.6*d*p) + (i/1.3+d/8.0)*d*(1.0-p.x);
+    float anotherFinal = i*0.5;
+    //gl_FragColor=vec4(anotherFinal,anotherFinal,anotherFinal,0.5);
+    //gl_FragColor=vec4(vec3(f*i/1.6,i/2.0+d/13.0,i)*d*p.x+vec3(i/1.3+d/8.0,i/2.0+d/18.0,i)*d*(1.0-p.x),1.0);
+
+    float final = vUv.x + vUv.y;
+    //final = saturate(final, 0, MAX_BRIGHTNESS);
+
+    float x = abs(sin(vUv.x * vUv.y + time / 5.0));
+    float y = abs(sin(vUv.x * vUv.y + time / 10.0));
+    float z = abs(sin(vUv.x * vUv.y + time / 15.0));
+
+    final = x * y * z;
+
+    final *= 0.5;
+    gl_FragColor=vec4(vec3(final, final, final),final);
+}</script><meta charset="utf-8"><link rel="stylesheet" href="/css/style.css"><link href="https://fonts.googleapis.com/css?family=Abel" rel="stylesheet" type="text/css"><script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r72/three.min.js"></script><script src="http://code.jquery.com/jquery-latest.min.js"></script><script src="/js/background_loader.js"></script><script src="/js/animated_background.js"></script><link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css" media="screen"><script src="/fancybox/jquery.fancybox.pack.js"></script><script type="text/javascript">$(document).ready(function() {
+    $(".fancybox")
+    .attr('rel', 'gallery')
+    .fancybox({
+        padding : 0,
+        helpers : {
+            title: {
+                type: 'outside'
+            },
+            overlay : {
+                css : {
+                    'background' : 'rgba(0,0,0,0.8)'
+                }
+            }
+        }
+    });
+});</script><script>(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-36307736-1', 'auto');
+ga('send', 'pageview');</script></head><!--body--><body onload="Init();"><div id="background"><img id="lorempixel"></div><div id="animated_header"><header><div class="spacer"></div><div class="box_in_border"><a href="/"><h2>a bunch of stuff by <span>Chris McMath</span></h2></a></div></header></div><div class="outer"><aside class="box_in"><nav id="shortcut_bar"><ul><li><div class="box_in_border"><a href="/"><h2>Everything</h2></a></div></li><li><div class="box_in_border"><a href="/categories/Games/"><h2>Games</h2></a></div></li><li><div class="box_in_border"><a href="/categories/Tools/"><h2>Tools</h2></a></div></li><li><div class="box_in_border"><div class="social_buttons"><div class="social_button"> <a href="http://twitter.com/chrismcmath"><img src="/imgs/twitter.png"></a></div><div class="social_button"> <a href="https://www.linkedin.com/in/chrismcmath"><img src="/imgs/linkedin.png"></a></div><div class="social_button"> <a href="http://www.facebook.com/chris.mcmath"><img src="/imgs/facebook.png"></a></div><div class="social_button"> <a href="http://gplus.to/chrismcmath"><img src="/imgs/google.png"></a></div></div></div></li></ul></nav></aside><section class="box_in"><article><div class="box_in_border"><div class="post_title"><h2><a href="/2016/06/01/Gang-Beasts/">Gang Beasts<span>Games</span></a></h2></div><div class="meta"><div class="game_meta"><p>Status<span>Early Access</span>Role<span>Networking and VR Engineer</span>Date<span>2016-06-01</span></p></div><div class="gallery"><div class="img_container"><a rel="group" href="/2016/06/01/Gang-Beasts/0.png" title="Networking was necessary to allow VR players to experience the game with others" class="fancybox"><img src="/2016/06/01/Gang-Beasts/0.png" alt="Networking was necessary to allow VR players to experience the game with others"/></a></div><div class="img_container"><a rel="group" href="/2016/06/01/Gang-Beasts/1.png" title="It was also a widely requested feature amongst regular fans" class="fancybox"><img src="/2016/06/01/Gang-Beasts/1.png" alt="It was also a widely requested feature amongst regular fans"/></a></div><div class="img_container"><a rel="group" href="/2016/06/01/Gang-Beasts/2.png" title="Gang Beasts is a physics based brawler, which produced some unique networking challenges" class="fancybox"><img src="/2016/06/01/Gang-Beasts/2.png" alt="Gang Beasts is a physics based brawler, which produced some unique networking challenges"/></a></div></div><div class="tagline"><h4>Boneloaf's indie classic</h4></div></div><div class="content"><p>Working up in the North of England at Coatsink was a great experience, and quite the counterpoint to my time in China. The team and I had the pleasure of bringing Gang Beasts online, and allowing players to get closer to the action than ever before with VR integration.</p>
+</div><div class="footer"><div class="links"><ul><li><h4><a href="http://gangbeasts.game/">Official Page</a></h4></li><li><h4><a href="http://store.steampowered.com/app/285900/">Steam Page</a></h4></li></ul></div></div><ul class="tags"><li><span><a href="/tags/game/"><p>#game</p></a></span></li><li><span><a href="/tags/project/"><p>#project</p></a></span></li></ul><div class="content"></div></div></article><article><div class="box_in_border"><div class="post_title"><h2><a href="/2016/04/18/Snip-Snip-Snooker/">Snip Snip Snooker<span>Games</span></a></h2></div><div class="meta"><div class="game_meta"><p>Status<span>Abandoned</span>Role<span>Designer/Developer</span>Date<span>2016-04-18</span></p></div><div class="gallery"><div class="img_container"><a rel="group" href="/2016/04/18/Snip-Snip-Snooker/0.png" title="" class="fancybox"><img src="/2016/04/18/Snip-Snip-Snooker/0.png" alt=""/></a></div><div class="img_container"><a rel="group" href="/2016/04/18/Snip-Snip-Snooker/1.png" title="" class="fancybox"><img src="/2016/04/18/Snip-Snip-Snooker/1.png" alt=""/></a></div></div><div class="tagline"><h4>Bite-sized action/puzzler</h4></div></div><div class="content"><p>A rushed but fun Ludum Dare experiment with mobile game design, Snip-Snip was designed to be played in short sessions with touch input. The aesthetic evolved with the mechanics, but would not ultimately coaselse to something satisfying. Nevertheless the refractive ideas opened other avenues of investigation.</p>
+</div><div class="footer"><div class="links"><ul><li><h4><a href="https://chrismcmath.itch.io/snip-snip-snooker">Play and Download on Itch.io</a></h4></li><li><h4><a href="http://ludumdare.com/compo/ludum-dare-35/?action=preview&amp;uid=35889">Ludum Dare</a></h4></li></ul></div></div><ul class="tags"><li><span><a href="/tags/game/"><p>#game</p></a></span></li><li><span><a href="/tags/project/"><p>#project</p></a></span></li></ul><div class="content"></div></div></article><article><div class="box_in_border"><div class="post_title"><h2><a href="/2016/01/31/Tea-For-Vader/">Tea For Vader<span>Games</span></a></h2></div><div class="meta"><div class="game_meta"><p>Status<span>Completed</span>Role<span>Developer</span>Date<span>2016-01-31</span></p></div><div class="gallery"><div class="img_container"><a rel="group" href="/2016/01/31/Tea-For-Vader/0.png" title="Darth takes his tea seriously" class="fancybox"><img src="/2016/01/31/Tea-For-Vader/0.png" alt="Darth takes his tea seriously"/></a></div><div class="img_container"><a rel="group" href="/2016/01/31/Tea-For-Vader/1.png" title="How do you prepare it to his favour?" class="fancybox"><img src="/2016/01/31/Tea-For-Vader/1.png" alt="How do you prepare it to his favour?"/></a></div><div class="img_container"><a rel="group" href="/2016/01/31/Tea-For-Vader/2.png" title="Failure has consequences" class="fancybox"><img src="/2016/01/31/Tea-For-Vader/2.png" alt="Failure has consequences"/></a></div><div class="img_container"><a rel="group" href="/2016/01/31/Tea-For-Vader/3.png" title="The tea preparation algorithm was elucidated by a scorecard" class="fancybox"><img src="/2016/01/31/Tea-For-Vader/3.png" alt="The tea preparation algorithm was elucidated by a scorecard"/></a></div></div><div class="tagline"><h4>Brew Tea-em-up</h4></div></div><div class="content"><p>A joke that became a jam game, Tea for Vader tasks you with making the perfect brew for the dark lord. We used the jam-status to justify packing the game with Star Wars references and absurdities; from a barshop sextet to Paul Crabb’s increasingly anxious teaboy-cum-sadist’s Tamagotchi.</p>
+</div><div class="footer"><div class="links"><ul><li><h4><a href="http://globalgamejam.org/2016/games/tea-vader">Global Game Jam page</a></h4></li></ul></div></div><ul class="tags"><li><span><a href="/tags/game/"><p>#game</p></a></span></li><li><span><a href="/tags/project/"><p>#project</p></a></span></li></ul><div class="content"></div></div></article></section></div></body><!--footer include _partial/footer--></html>
