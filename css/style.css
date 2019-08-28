@@ -45,7 +45,7 @@ p {
   color: #000;
 }
 #animated_header h2 {
-  color: #ccc;
+  color: #888;
   margin: 0;
   padding: 0;
   text-align: right;
@@ -61,12 +61,11 @@ p {
   padding: 0.5em;
   padding-top: 0;
   padding-bottom: 0;
-}
-.box_in_border.box_post {
-  margin-bottom: 5em;
+  box-shadow: 3px 3px 4px -1px rgba(0,0,0,0.75);
+  background: #fff;
 }
 .post_title h2 {
-  text-shadow: none;
+  text-shadow: 1px 1px #444;
 }
 .post_title span {
   text-shadow: none;
@@ -173,7 +172,7 @@ aside {
   float: right;
 }
 .tags li a {
-  color: #ccc;
+  color: #888;
 }
 .tags li a p {
   margin: 0;
@@ -181,7 +180,7 @@ aside {
 }
 article h2 span {
   float: right;
-  color: #ccc;
+  color: #888;
 }
 .tagline {
   margin-top: 0.5em;
@@ -206,6 +205,7 @@ p {
   width: 10em;
   overflow: hidden;
   display: inline-block;
+  box-shadow: 1px 1px 2px -1px rgba(0,0,0,0.75);
 }
 .img_container img {
   position: absolute;
@@ -225,7 +225,7 @@ p {
   margin-right: 0.5em;
 }
 .meta {
-  color: #ccc;
+  color: #888;
   font-size: 0.8em;
 }
 .game_meta {
@@ -237,7 +237,7 @@ p {
 .game_meta span {
   margin-left: 0.5em;
   margin-right: 0.5em;
-  color: #ccc;
+  color: #888;
 }
 .tagline h4 {
   font-size: 2em;

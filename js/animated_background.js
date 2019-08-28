@@ -1,4 +1,3 @@
-/*
 var background;
 var camera, scene, renderer;
 var uniforms;
@@ -65,4 +64,3 @@ function render() {
 
     renderer.render(scene, camera);
 }
-*/
